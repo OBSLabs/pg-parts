@@ -2,6 +2,7 @@ app_path = File.expand_path(File.dirname(__FILE__)+"/..")
 $LOAD_PATH.unshift(app_path + '/lib')
 require 'pg_parts'
 
-manager = PgParts::PgPartsOptionsParser.state.manager
+manager = PgParts::StateLoader.bootstrap
+
 #PgParts::PartitionProcessor.process!(manager, :daily)
 PgParts::PartitionProcessor.process!(manager, :hourly)
