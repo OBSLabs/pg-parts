@@ -3,6 +3,5 @@ $LOAD_PATH.unshift(app_path + '/lib')
 require 'pg_parts'
 
 manager = PgParts::StateLoader.bootstrap
-
-#PgParts::PartitionProcessor.process!(manager, :daily)
 PgParts::TruncateProcessor.process!(manager, :hourly)
+PgParts::TruncateProcessor.process!(manager, :daily)

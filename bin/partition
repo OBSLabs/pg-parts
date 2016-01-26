@@ -4,5 +4,5 @@ require 'pg_parts'
 
 manager = PgParts::StateLoader.bootstrap
 
-#PgParts::PartitionProcessor.process!(manager, :daily)
+PgParts::PartitionProcessor.process!(manager, :daily)
 PgParts::PartitionProcessor.process!(manager, :hourly)
