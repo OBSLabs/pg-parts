@@ -1,0 +1,12 @@
+GEM
+  specs:
+    pg (0.18.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  pg
+
+BUNDLED WITH
+   1.10.6
