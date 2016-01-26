@@ -1,0 +1,10 @@
+database:
+  host: localhost
+  user: postgres
+  password: postgres
+  dbname: database_production
+tables:
+  hourly:
+    events: 48
+  daily:
+    impressions:                     168
