@@ -15,8 +15,12 @@ module PgParts
       unless @manager
         @manager = PartitionManager.new
         @manager.connection = connection
-        hourly.each_pair{ |k,v| @manager.add!(:hourly, k,v) }
-        daily.each_pair{ |k,v| @manager.add!(:daily, k,v) }
+        hourly.each_pair do |k,v|
+          @manager.add!(:hourly, k,v)
+        end
+        daily.each_pair do |k,v|
+          @manager.add!(:daily, k,v)
+        end
       end
       @manager
     end

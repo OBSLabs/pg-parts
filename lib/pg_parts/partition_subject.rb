@@ -29,7 +29,6 @@ module PgParts
     def detach_query
       if has_children?(to_detach)
         children_to_detach(to_detach).map do |child_to_detach|
-          puts child_to_detach
           "ALTER TABLE IF EXISTS #{child_to_detach} NO INHERIT #{table};"
         end.join(' ')
       end

@@ -4,7 +4,7 @@ module PgParts
       manager.find(behavior).each do |subject|
         subject.sequence.each do |cmd|
           puts cmd
-          #subject.connection.exec cmd
+          subject.connection.exec cmd
         end
       end.size
     end
