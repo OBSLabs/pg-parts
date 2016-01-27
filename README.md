@@ -1,5 +1,11 @@
 pg-parts is a partition manager for postgres. It's designed specially to handle fast growing tables (1M records/day) which retain data for a certain period of time (e.g. last 14 days).
 
+### Basic idea
+Break a large table into smaller partition. Remove data via detach partition vs delete recods with DELETE statement.
+
+### Why bother about partitioning when `delete from X where created_at` does a job?
+1. Index bloat https://wiki.postgresql.org/wiki/Index_Maintenance#Index_Bloat
+2. Load spikes during the maintenance. Attach partition has no overhead.
 
 ### Applying partitionining to existing table
 Let's assume that table already exist and there is some data. This script create a such example.
