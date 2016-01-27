@@ -13,7 +13,7 @@ Let's assume that table already exist and there is some data. This script create
 -- create new table.
 create table impressions(campaign_id integer, site_id integer);
 -- create some data.
-create table insert into impressions values (1,2), (2,3);
+insert into impressions values (1,2), (2,3);
 ```
 Next step is to add table to the config.yml
 
