@@ -8,9 +8,7 @@ create table insert into impressions values (1,2), (2,3);
 ```
 Next step is to add table to the config.yml
 
-and then run `bundle exec bin/partition -c config.yml`
-
-That will produce output similar to:
+and then run `bundle exec bin/partition -c config.yml` which produces output similar to:
 ```sql
 CREATE TABLE IF NOT EXISTS impressions_20160127 () INHERITS (impressions);
 
