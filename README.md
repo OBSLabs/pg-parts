@@ -44,3 +44,9 @@ pg-parts automatically detach partitions older then threhold defined in config.y
 
 ### Remove detached partitions
 pg-parts doesn't do it implicitly and it's necessary to run `bundle exec ruby bin/truncate -c config.yml`explicitly to removes all detached partitions.
+
+### Deployment
+* `git clone git@github.com:OBSLabs/pg-parts.git` to home directory is a suitable way to install it.
+* /etc/ as a home for pg-parts config file. i.e. `/etc/pg_parts.yml`
+* cron is a reliable way to run bin/partition & bin/truncate
+
