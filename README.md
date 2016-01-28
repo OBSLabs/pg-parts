@@ -34,7 +34,7 @@ insert into impressions select * from only impressions;
 delete from only impressions;
 ```
 ### Execution
-pg-parts is nil-potent. It creates partion when missing and does nothing otherwise, thereby it's safe to run it multiple times.
+pg-parts is idempotent. It creates partion when missing and does nothing otherwise, thereby it's safe to run it multiple times.
 
 ### Index partition
 pg-parts automatically creates indicies on newly created partition based on master table and name them accordingly.
