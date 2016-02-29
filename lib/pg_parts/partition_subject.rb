@@ -1,21 +1,27 @@
 module PgParts
   class PartitionSubject < Struct.new(:connection, :table, :strategy)
-    def sequence
+    def partition_sequence
       steps = [
         create_partition,
         create_rule,
-        create_indexes,
-        detach_query,
+        create_indexes
       ].compact.flatten
     end
+
+    def drop_sequence
+      expired_partitions.map do |p|
+        "DROP TABLE #{p.full_table_name}; "
+      end
+    end
+
+    private
 
     def create_partition
       "CREATE TABLE IF NOT EXISTS #{to_attach} () INHERITS (#{table});"
     end
 
     def create_rule
-      %{
-        CREATE OR REPLACE RULE #{table}_insert AS
+      %{ CREATE OR REPLACE RULE #{table}_insert AS
         ON INSERT TO #{table}
         DO INSTEAD
           INSERT INTO #{to_attach} VALUES (new.*)  RETURNING *;
@@ -26,44 +32,20 @@ module PgParts
       IndexManager.new(connection, table, to_index).create_queries if create_index?
     end
 
-    def detach_query
-      if has_children?(to_detach)
-        children_to_detach(to_detach).map do |child_to_detach|
-          "ALTER TABLE IF EXISTS #{child_to_detach} NO INHERIT #{table};"
-        end.join(' ')
-      end
+    def expired_partitions
+      partitions.select{|p| strategy.expired?(p) }
     end
 
-    private
+    def partitions
+      @partitions ||= PartitionRepo.new(connection, table).partitions
+    end
 
     def create_index?
       strategy.index_same_table? || helper.table_exist?(to_index, connection)
     end
 
-    def children
-      @children ||= helper.children(table,connection)
-    end
-
-    def has_children?(name)
-      children_to_detach(name).any?
-    end
-
-    def children_list
-      children.map { |v| Partition.new(v) }
-    end
-
-    def children_to_detach(name)
-      current_child = Partition.new(name)
-      children_list.select { |child| child.object_date_formatted <= current_child.object_date_formatted }
-        .map { |v| v.full_table_name }
-    end
-
     def helper
       PartitionHelper
-    end
-
-    def to_detach
-      strategy.name(table, strategy.to_remove)
     end
 
     def to_attach

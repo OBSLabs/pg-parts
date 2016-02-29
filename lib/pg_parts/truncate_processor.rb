@@ -1,25 +1,14 @@
 module PgParts
-  class TruncateProcessor < Struct.new(:manager, :behavior)
-    def tables
-      @tables ||= manager.find(behavior).map(&:table)
+  module TruncateProcessor
+    def process!(manager, behavior = :daily)
+      manager.find(behavior).each do |subject|
+        subject.drop_sequence.each do |cmd|
+          puts cmd
+          subject.connection.exec cmd
+        end
+      end.size
     end
 
-    def self.process!(manager, behavior)
-      new(manager,behavior).process!
-    end
-
-    def process!
-      tables.each { |table| process_table!(table) }
-    end
-
-    def process_table!(table)
-      detached_partitions(table).each do |partition|
-        DeletePartition.new(manager.connection, partition).drop!
-      end
-    end
-
-    def detached_partitions(table)
-      PartitionRepo.new(manager.connection, table, behavior).fetch
-    end
+    extend self
   end
 end

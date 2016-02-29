@@ -8,6 +8,10 @@ module PgParts
       current - limit
     end
 
+    def expired?(partition)
+      partition.starts_at < to_remove
+    end
+
     def name(table,t)
       raise NotImplementedError
     end
