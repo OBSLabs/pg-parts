@@ -4,7 +4,7 @@ module PgParts
 
     def add!(behavior, table, period)
       klass = { daily: DailyPartition, hourly: HourlyPartition }[behavior]
-      strategy = klass.new(period)
+      strategy = klass.new(period * 3600)
       obj  = PartitionSubject.new(connection, table, strategy)
       subjects<<obj
       self
