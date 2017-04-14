@@ -1,0 +1,9 @@
+database:
+  host: db-ap
+  user: postgres
+  password: dl8E8zxlC54Q
+  dbname: rubicon_analytics
+  port: 6432
+tables:
+  daily:
+    events:                     168

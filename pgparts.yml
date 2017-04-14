@@ -1,0 +1,49 @@
+database:
+  host: db-realtime 
+  user: postgres
+  password: dl8E8zxlC54Q
+  dbname: virool_realtime
+  port: 6432
+tables:
+  hourly:
+    bidder_request_counts:    48
+    abstract_events_log:      48
+    fill_forfeits:            48
+    widget_config_requests:   48
+    ad_responses:             48
+    ad_empty_responses:       48
+    ad_readies:               48
+    ad_fails:                 48
+    ad_wins:                  48
+    ad_prices:                48
+    page_loads:               48
+  daily:
+    bids:                     168
+    bluekai_impressions:      168
+    cpm_impressions:          168
+    cpm_transfers:            168
+    events:                   168
+    failed_player_loads:      168
+    fallback_impressions:     168
+    playbacks:                168
+    player_events:            168
+    trackings:                168
+    transfers:                168
+    utilized_segments:        168
+    viewable_impressions:     168
+    viewer_forfeits:          168
+    winning_bids:             168
+    bidder_request_counts_1h: 168
+    ad_opportunities:         168
+    widget_requests:          168
+    adserver_events:          168
+    am_auctions:              168
+    auction_funnel:           168
+    grapeshot_impressions:    168
+    playback_events_first_quartile:    168
+    playback_events_midpoint:    168
+    playback_events_third_quartile:    168
+    playback_events_complete:    168
+    unit_readies: 168
+    unmeasurable_impressions: 168
+    viewability_measurements: 168
