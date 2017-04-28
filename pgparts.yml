@@ -18,6 +18,7 @@ tables:
     ad_prices:                48
     page_loads:               48
   daily:
+    load_timeouts:            168
     bids:                     168
     bluekai_impressions:      168
     cpm_impressions:          168
