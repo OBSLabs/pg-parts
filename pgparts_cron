@@ -15,5 +15,5 @@ _=/usr/bin/env
 * * * * * root cd /virool/app && echo "yes" >> /virool/app/log/is_cron_alive.log
 50 10 * * * root cd /virool/app && ruby bin/truncate -c /virool/app/pgparts.yml >> /virool/app/log/truncate.log 2>> /virool/app/log/truncate-errors.log
 40 10 * * * root cd /virool/app && ruby bin/truncate -c /virool/app/pgparts_rubicon_analytics.yml >> /virool/app/log/truncate.log 2>> /virool/app/log/truncate-errors.log
-25 * * * * root cd /virool/app && ruby bin/partition -c /virool/app/pgparts.yml >> /virool/app/log/truncate.log 2>> /virool/app/log/truncate-errors.log
-15 * * * * root cd /virool/app && ruby bin/partition -c /virool/app/pgparts_rubicon_analytics.yml >> /virool/app/log/truncate.log 2>> /virool/app/log/truncate-errors.log
+25 * * * * root cd /virool/app && ruby bin/partition -c /virool/app/pgparts.yml >> /virool/app/log/partition.log 2>> /virool/app/log/partition-errors.log
+15 * * * * root cd /virool/app && ruby bin/partition -c /virool/app/pgparts_rubicon_analytics.yml >> /virool/app/log/partition.log 2>> /virool/app/log/partition-errors.log
