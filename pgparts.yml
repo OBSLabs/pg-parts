@@ -1,9 +1,9 @@
 database:
-  host: db-realtime 
+  host: 172.31.0.145 
   user: postgres
-  password: dl8E8zxlC54Q
-  dbname: virool_realtime
-  port: 6432
+  password: test123$
+  dbname: realtime
+  port: 5432
 tables:
   hourly:
     bidder_request_counts:    48
@@ -18,9 +18,7 @@ tables:
     ad_prices:                48
     page_loads:               48
   daily:
-    load_timeouts:            168
     bids:                     168
-    bluekai_impressions:      168
     cpm_impressions:          168
     cpm_transfers:            168
     events:                   168
@@ -46,5 +44,3 @@ tables:
     playback_events_third_quartile:    168
     playback_events_complete:    168
     unit_readies: 168
-    unmeasurable_impressions: 168
-    viewability_measurements: 168
